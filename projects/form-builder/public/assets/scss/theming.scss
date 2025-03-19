@@ -1,0 +1,87 @@
+:root {
+  --mat-sidenav-container-width:auto !important;
+  --mat-toolbar-standard-height:45px !important;
+  --mat-sidenav-container-shape:0 !important;
+  --mat-menu-container-shape:0 !important;
+  --mat-sidenav-container-background-color:#1c1720 !important;
+  --mat-toolbar-container-text-color:#fff !important;
+  --mdc-elevated-card-container-shape:0 !important;
+  --mat-dialog-headline-padding:0 25px !important;
+  --mat-dialog-actions-padding:0 25px !important;
+}
+
+:root, html[class='light'] {
+  --mat-sidenav-content-background-color:#eee;
+  --mdc-text-button-label-text-color:#333;
+  --mat-divider-color:#d8d8d8;
+  --bgActive:#333;
+
+}
+
+
+html[class='dark'] {
+  --mat-sidenav-content-background-color:#333;
+  --mdc-outlined-card-container-color:#333;
+  --mat-sidenav-content-text-color:#ccc;
+  --bs-secondary-color:#999;
+  --mdc-icon-button-icon-color:#ccc;
+  --mdc-elevated-card-container-color:#333;
+  --mat-card-subtitle-text-color:#ccc;
+  --mat-card-title-text-color:#ccc;
+  --mdc-text-button-label-text-color:#ccc;
+  --mdc-outlined-button-label-text-color:#ccc;
+  --mat-checkbox-label-text-color:#ccc;
+  --mat-radio-label-text-color:#ccc;
+  --mat-standard-button-toggle-text-color:#ccc;
+  --bs-body-color:#ccc;
+}
+
+
+html[data-theme='base'] {
+  --mat-toolbar-container-background-color:#e11d48;
+
+}
+html[data-theme='yellow'] {
+  --mat-toolbar-container-background-color:#f59e0b;
+}
+html[data-theme='green'] {
+  --mat-toolbar-container-background-color:#22c55e;
+
+}
+html[data-theme='blue'] {
+  --mat-toolbar-container-background-color:#3b82f6;
+
+}
+html[data-theme='orange'] {
+  --mat-toolbar-container-background-color:#ea580c;
+
+}
+html[data-theme='red'] {
+  --mat-toolbar-container-background-color:#cc0022;
+
+}
+html[data-theme='violet'] {
+  --mat-toolbar-container-background-color:#6d28d9;
+
+}
+
+body * {font-family: "Roboto Condensed", sans-serif;}
+a {text-decoration:none !important;}
+.mat-icon {width:auto !important;height:auto !important;}
+// Material Design Css
+.mat-drawer-inner-container, .mat-drawer {overflow:visible !important;border:none !important;}
+.mat-drawer-content {height:calc(100vh) !important;}
+.mat-mdc-menu-content {padding:0px !important;}
+.headerdropdown.mat-mdc-menu-panel {margin-top:2px;max-width:450px;min-height:200px;}
+
+.titlehead {position:sticky;top:0;z-index:9;
+  .mat-icon {width:auto;height:auto;vertical-align:middle;margin-right:10px;}
+}
+.createForm, .addNewpopupform {
+  .addNewformbtn {display:block !important;}
+}
+.tableGrid, .gridpopupform {
+  .gridbtn, .pdfdownload {display:block !important;}
+}
+
+

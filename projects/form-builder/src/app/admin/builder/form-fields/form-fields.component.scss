@@ -1,0 +1,11 @@
+.formitem {position:relative;
+    .errmsg {position:absolute;bottom:2px;left:14px;font-size:11px;}
+    .formoptions {position:absolute;right:0px;top:-5px;display:none;z-index:99;
+        mat-icon {width:auto;height:auto;font-size:12px;margin:3px;border:1px solid #999;padding:3px;border-radius:5px;cursor:pointer;}
+    }
+    &:hover {
+        .formoptions {display:block;}
+    }
+    input {vertical-align:middle;}
+  }
+.formbtn {display:none;}

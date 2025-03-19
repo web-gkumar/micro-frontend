@@ -1,0 +1,100 @@
+<!-- <section class="w-4/5 mx-auto py-12">
+  <h1 class="text-center font-bold text-gray-900 text-4xl">Registation</h1>
+  <p class="text-center text-gray-600 my-5">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
+
+  <button class="w-full rounded-full bg-slate-200 py-2.5 text-gray-600 font-semibold shadow-sm hover:bg-slate-300">
+    <img class="inline mx-2" src="assets/icon/google-logo.svg" width="20px" height="20px"> Log in with Google</button>
+
+  <div class="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-muted after:mt-0.5 after:flex-1 after:border-t after:border-muted">
+    <p class="mx-4 mb-0 text-center text-sm text-muted-foreground">or</p>
+  </div>
+
+
+
+
+  <form class="mt-10" [formGroup]="registationForm">
+    <div class="grid grid-cols-1 gap-y-5 gap-x-5 sm:grid-cols-6">
+      <div class="sm:col-span-3">
+        <input type="text"
+          class="w-full rounded-full border-0 px-6 py-2 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400"
+          placeholder="FullName" formControlName="fullName">
+        @if(registationForm.get('fullName')?.errors && registationForm.get('fullName')?.touched){
+        <small class="block text-red-500 px-6">Name is required</small>
+        }
+      </div>
+
+      <div class="sm:col-span-3">
+        <input type="email"
+          class="w-full rounded-full border-0 px-6 py-2 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400"
+          placeholder="Email Id" formControlName="email">
+        @if(registationForm.get('email')?.errors && registationForm.get('email')?.touched){
+        <small class="block text-red-500 px-6">Email is required.</small>
+        }
+      </div>
+
+      <div class="sm:col-span-3">
+        <input type="tel"
+          class="w-full rounded-full border-0 px-6 py-2 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400"
+          placeholder="Mobile Number" formControlName="mobile">
+        @if(registationForm.get('mobile')?.errors && registationForm.get('mobile')?.touched){
+        <small class="block text-red-500 px-6">Mobile is required.</small>
+        }
+      </div>
+      <div class="sm:col-span-3">
+        <input type="password"
+          class="w-full rounded-full border-0 px-6 py-2 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400"
+          placeholder="Password" formControlName="password">
+        @if(registationForm.get('password')?.errors && registationForm.get('password')?.touched){
+        <small class="block text-red-500 px-6">Password is required</small>
+        }
+      </div>
+
+      <div class="sm:col-span-full">
+        <button class="w-full rounded-full bg-indigo-600 py-2 text-white font-semibold shadow-sm hover:bg-indigo-500"
+          (click)="onSubmit()" [disabled]="registationForm.invalid">Registation</button>
+      </div>
+      <div class="sm:col-span-full">
+        <p class="my-2 text-center">Already have an account? <a [routerLink]="['/auth/sign-in']">Login</a></p>
+      </div>
+    </div>
+  </form>
+</section> -->
+
+
+<section class="text-center py-5">
+  <h1>Registation</h1>
+  <p>Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
+  <button class="btn btn-danger"><img class="mx-2" src="assets/img/icon/google-logo.svg" width="20px" height="20px"> Log in with Google</button>
+
+  <form class="mt-5 px-5 text-start" [formGroup]="registationForm">
+    <div class="mb-3">
+      <input type="text" class="form-control" placeholder="FullName" formControlName="fullName">
+      @if(registationForm.get('fullName')?.errors && registationForm.get('fullName')?.touched){
+        <small class="text-danger">Name is required</small>
+      }
+    </div>
+
+    <div class="mb-3">
+      <input type="email" class="form-control" placeholder="Email Id" formControlName="email">
+      @if(registationForm.get('email')?.errors && registationForm.get('email')?.touched){
+        <small class="text-danger">Email is required.</small>
+      }
+    </div>
+
+    <div class="mb-3">
+      <input type="tel" class="form-control" placeholder="Mobile Number" formControlName="mobile">
+      @if(registationForm.get('mobile')?.errors && registationForm.get('mobile')?.touched){
+        <small class="text-danger">Mobile is required.</small>
+      }
+    </div>
+
+    <div class="mb-3">
+      <input type="password" class="form-control" placeholder="Password" formControlName="password">
+      @if(registationForm.get('password')?.errors && registationForm.get('password')?.touched){
+        <small class="block text-red-500 px-6">Password is required</small>
+      }
+    </div>
+    <button class="w-100 btn btn-danger my-2" (click)="onSubmit()" [disabled]="registationForm.invalid">Registation</button>
+  </form>
+  <p class="my-2">Already have an account? <a [routerLink]="['../signin']">Login</a></p>
+</section>
