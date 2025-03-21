@@ -1,0 +1,15 @@
+.sidenav {position:relative;height:100%;
+  ul {
+    li {padding:8px 10px;cursor:pointer;
+      mat-icon{font-size:16px;width:auto;height:auto;color:#8b8b8b;}
+      small {font-size:11px;}
+      // .megamenu {position:absolute;left:100%;z-index:9999;background:#fff;top:0;height:100%;width:170px;display:none;}
+      // &:hover {background:#000;color:#fff;
+      //   .megamenu {display:block;}
+      // }
+    }
+    li.active {background:#ccc;}
+  }
+
+}
+

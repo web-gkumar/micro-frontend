@@ -3,43 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "form-builder": {
+    "myApp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/form-builder",
-      "sourceRoot": "projects/form-builder/src",
+      "root": "projects/my-app",
+      "sourceRoot": "projects/my-app/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/form-builder",
-            "index": "projects/form-builder/src/index.html",
-            "browser": "projects/form-builder/src/main.ts",
+            "outputPath": "dist/my-app",
+            "index": "projects/my-app/src/index.html",
+            "browser": "projects/my-app/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "projects/form-builder/tsconfig.app.json",
+            "tsConfig": "projects/my-app/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/form-builder/public"
+                "input": "projects/my-app/public"
               }
             ],
             "styles": [
-              "projects/form-builder/src/styles.scss"
+              "projects/my-app/src/styles.scss"
             ],
-            "scripts": [],
-            "server": "projects/form-builder/src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "projects/form-builder/src/server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -69,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "form-builder:build:production"
+              "buildTarget": "myApp:build:production"
             },
             "development": {
-              "buildTarget": "form-builder:build:development"
+              "buildTarget": "myApp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,16 +82,16 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "projects/form-builder/tsconfig.spec.json",
+            "tsConfig": "projects/my-app/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/form-builder/public"
+                "input": "projects/my-app/public"
               }
             ],
             "styles": [
-              "projects/form-builder/src/styles.scss"
+              "projects/my-app/src/styles.scss"
             ],
             "scripts": []
           }

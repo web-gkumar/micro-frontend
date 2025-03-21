@@ -1,0 +1,19 @@
+<section class="d-flex justify-content-between align-items-center">
+    <a class="text-white" routerLink="dashboard">My App</a>
+    <div class="d-flex">
+        <form class="me-4">
+            <input class="searchbox" type="search" placeholder="Search here..." [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" class="headersearchItem">
+                @for (street of filteredStreets | async; track street) {
+                    <mat-option [value]="street">{{street}}</mat-option>
+                }
+            </mat-autocomplete>
+        </form>
+        <button mat-icon-button><mat-icon class="text-white">dashboard</mat-icon></button>
+        <button mat-icon-button class="mx-2" [matMenuTriggerFor]="notification"><mat-icon class="text-white">circle_notifications</mat-icon></button>
+        <button mat-icon-button [matMenuTriggerFor]="profilemenu"><mat-icon class="text-white">manage_accounts</mat-icon></button>
+    </div>
+</section>
+
+<mat-menu #profilemenu="matMenu" class="headerdropdown" xPosition="before">Testing</mat-menu>
+<mat-menu #notification="matMenu" class="headerdropdown" xPosition="before">demo</mat-menu>

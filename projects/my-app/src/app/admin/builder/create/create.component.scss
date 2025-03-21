@@ -1,0 +1,17 @@
+.accordion-item {display:block;border:solid 1px #ccc;border-top:none;
+    input {padding:5px;border:1px solid #ccc;border-radius:5px;margin-right:10px;font-size:12px;}
+
+
+
+    &:first-child {border-top:solid 1px #ccc;border-radius:4px 4px 0 0;}
+    &:last-child {border-radius:0 0 4px 4px;}
+  }
+
+  .accordion-header {cursor:pointer;
+    span {font-size:0.85em;color:#999;}
+    mat-icon {vertical-align:middle;font-size:18px;}
+  }
+  .accordion-item.open {
+    .accordion-header {background:#e1e1e1;}
+  }
+  

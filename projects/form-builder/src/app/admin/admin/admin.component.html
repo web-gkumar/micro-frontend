@@ -1,9 +1,0 @@
-<mat-drawer-container autosize>
-    <mat-toolbar>
-        <button mat-icon-button (click)="sideMenu.toggle()"><mat-icon class="text-white">menu</mat-icon></button>
-        <app-header class="w-100 ml-4"/>
-    </mat-toolbar>
-    <mat-drawer #sideMenu mode="side" opened=""><app-sidebar/></mat-drawer>
-    <router-outlet></router-outlet>
-    <app-footer/>
-</mat-drawer-container>

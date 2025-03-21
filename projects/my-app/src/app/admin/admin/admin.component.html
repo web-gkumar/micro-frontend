@@ -1,0 +1,9 @@
+<mat-toolbar class="bg-primary d-flex">
+    <button mat-icon-button (click)="sideMenu.toggle()"><mat-icon class="text-white">menu</mat-icon></button>
+    <app-header class="w-100 ml-4"/>
+</mat-toolbar>
+<mat-drawer-container>
+    <mat-drawer #sideMenu mode="side" opened=""><app-sidebar/></mat-drawer>
+    <div class="mainpage"><router-outlet></router-outlet></div>
+    <!-- <app-footer/> -->
+</mat-drawer-container>
