@@ -1,0 +1,37 @@
+<section class="sidenav h-100">
+  <ul class="text-center">
+    <li [routerLink]="['dashboard']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
+      <mat-icon>dashboard</mat-icon>
+      <small class="d-block">Dashboard</small>
+    </li>
+    <li [routerLink]="['create']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
+      <mat-icon>add_circle</mat-icon>
+      <small class="d-block">Create</small>
+    </li>
+
+  
+    @for (item of moduleLIst; track item; let index = $index) {
+    @if(item.menulist && item.menulist.length > 0){
+    <mat-icon>{{item.moduleIcon}}</mat-icon><small>{{item.moduleName}}</small>
+    <div class="megamenu">
+      <ul class="w-full text-sm font-medium text-gray-900 p-0">
+        @for (menuitem of item.menulist; track menuitem;) {
+        <li
+          class="flex items-center w-full px-4 py-2 cursor-pointer border-b border-gray-200 hover:bg-slate-900 hover:text-white"
+          [routerLink]="[item.moduleName, menuitem.menuName, menuitem.menuFormName]"
+          routerLinkActive="bg-slate-900 text-white">
+          <mat-icon class="text-base">{{menuitem.menuIcon}}</mat-icon>
+          {{menuitem.menuName | titlecase}}
+        </li>
+        }
+      </ul>
+    </div>
+    }@else {
+    <li [routerLink]="[item.moduleName,item.moduleForm]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
+      <mat-icon>{{item.moduleIcon ? item.moduleIcon : 'window'}}</mat-icon>
+      <small class="d-block">{{item.moduleName}}</small>
+    </li>
+    }
+    }
+  </ul>
+</section>

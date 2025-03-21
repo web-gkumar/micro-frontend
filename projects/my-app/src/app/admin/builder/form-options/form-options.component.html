@@ -1,0 +1,198 @@
+<div class="bg-dark text-white d-flex justify-content-between py-2 px-4">
+  <h6 class="mt-1 m-0">{{pagetitle}}</h6>
+  <mat-icon (click)="closeModel()">cancel</mat-icon>
+</div>
+
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms">
+  @for (items of data; track items; let i = $index) {
+
+  <!-- Form Fields Page -->
+  @if(items && !items?.gridButtons){
+  <mat-tab>
+    <ng-template mat-tab-label>Display Fields</ng-template>
+    <mat-dialog-content class="mat-typography">
+      <div class="grid grid-cols-4 gap-3">
+        <input type="text" placeholder="Add Fieldname" [(ngModel)]="items.name">
+        <input type="text" placeholder="Add label" [(ngModel)]="items.label">
+        <input type="text" placeholder="Add placeholder" [(ngModel)]="items.placeholder">
+        <input type="text" placeholder="Add Class" [(ngModel)]="items.class">
+        <label><input type="checkbox" class="mt-2" [(ngModel)]="items.isMandatory" [checked]="items.isMandatory"> is Mandatory ?</label>
+        <label><input type="checkbox" class="mt-2" [(ngModel)]="items.disabled" [checked]="items.disabled"> is Disabled fields ?</label>
+        <label><input type="checkbox" class="mt-2" [(ngModel)]="items.hideFieldOnConditions"
+            [checked]="items.hideFieldOnConditions"> Default Hide ?</label>
+        @if(['text', 'number', 'email', 'password', 'date', 'textarea'].includes(items.type)){
+          <input [type]="items.type" placeholder="Add Default Value" [(ngModel)]="items.value">
+        }
+      </div>
+      @if(['checkbox', 'radio', 'dropdown'].includes(items.type)){
+      <h6 class="titlelabel mt-2 py-2">
+        <mat-icon class="mx-1" style="vertical-align:middle;" (click)="addvalue(items.values)">add_circle</mat-icon> Add {{items.type}} List
+      </h6>
+      @for (valueList of items.values; track $index) {
+        <input type="text" placeholder="Add value" [(ngModel)]="valueList.value">
+      }
+      }
+
+      @if(['button'].includes(items.type)){
+      <input type="text" placeholder="Add Class" [(ngModel)]="items.btnclass">
+      <h6 class="titlelabel mt-2 py-2"> <mat-icon class="mx-1" style="vertical-align:middle;" (click)="addvalue(items.values)">add_circle</mat-icon> Add {{items.type}} List</h6>
+      }
+
+      <h6 class="titlelabel mt-2 py-2"> <label><input type="checkbox" class="mt-1 mx-2" [(ngModel)]="items.isShowIf" [checked]="items.isShowIf"> Show If ?</label></h6>
+
+      @if(items.isShowIf){
+      <div class="">
+        <div class="">
+          <input type="text" placeholder="Conditional Fieldname" [(ngModel)]="items.showField">
+          <input type="text" placeholder="Hide/show Fieldname" [(ngModel)]="items.showFieldItems">
+        </div>
+      </div>
+      }
+
+    </mat-dialog-content>
+  </mat-tab>
+  }
+
+
+  <!-- Form Setting Page -->
+  @if(items?.gridButtons) {
+  <mat-tab>
+    <ng-template mat-tab-label>Form Settings</ng-template>
+    <mat-dialog-content class="mat-typography">
+      <h6 class="titlelabel mt-2 py-1"><mat-icon class="mx-1">add_circle</mat-icon> Form Settings</h6>
+      <input type="text" placeholder="Add formName" [(ngModel)]="items.formName">
+      <input type="text" placeholder="app_pojoname" [(ngModel)]="items.pojo">
+      <label class="m-2"><input type="checkbox" [(ngModel)]="items.isPopup" [checked]="items?.isPopup"> Is popup form?</label>
+      <label class="m-2"><input type="checkbox" [(ngModel)]="items.isImport" [checked]="items?.isImport"> Is Import File?</label>
+      <label class="m-2"><input type="checkbox" [(ngModel)]="items.isPDFDownload" [checked]="items?.isPDFDownload"> Is Download PDF?</label>
+    </mat-dialog-content>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>Grid Buttons Settings</ng-template>
+    <mat-dialog-content class="mat-typography">
+      <h6 class="titlelabel mt-2 py-1"><mat-icon class="mx-1" (click)="createActionBtn(items.gridButtons)">add_circle</mat-icon> Add Grid Buttons</h6>
+      @if (items.gridButtons && items.gridButtons.length > 0) {
+      <div class="">
+        <table class="w-100">
+          <thead>
+            <tr class="bg-slate-800">
+              <td class="border px-2"><small>Grid Button Name</small></td>
+              <td class="border px-2"><small>Grid Button Icons</small></td>
+              <td class="border px-2"><small>Disabled</small></td>
+              <td class="border px-2"><small>Actions</small></td>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of items.gridButtons; track item; let indx = $index) {
+            <tr>
+              <td class="border">
+                <input type="text" placeholder="Button Name" [(ngModel)]="items.gridButtons[indx].btnname">
+              </td>
+              <td class="border">
+                <input type="text" placeholder="Button Icon" [(ngModel)]="items.gridButtons[indx].btnicon">
+                <mat-icon class="mx-1 text-base">{{items.gridButtons[indx].btnicon}}</mat-icon>
+              </td>
+              <td class="border">
+                <label>
+                  <input type="checkbox" [(ngModel)]="items.gridButtons[indx].isdisabled">
+                  {{items.gridButtons[indx].isdisabled ? 'Yes': 'No'}}
+                </label>
+              </td>
+              <td class="border"><mat-icon style="font-size:20px;">delete</mat-icon></td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      }
+    </mat-dialog-content>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>Form Settings</ng-template>
+    <mat-dialog-content class="mat-typography">
+      <h6 class="titlelabel mt-2 py-1"><mat-icon class="mx-1" (click)="createActionBtn(items.formsButtons)">add_circle</mat-icon> Forms Button Settings</h6>
+      @if (items.formsButtons && items.formsButtons.length > 0) {
+      <div class="w-100">
+        <table class="w-100">
+          <thead>
+            <tr>
+              <td class="border px-2"><small>Form Button Name</small></td>
+              <td class="border px-2"><small>Form Button Icons</small></td>
+              <td class="border px-2"><small>Use To</small></td>
+              <td class="border px-2"><small>Actions</small></td>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of items.formsButtons; track item; let indx = $index) {
+            <tr>
+              <td class="border px-2 py-1">
+                <input type="text" placeholder="Button Name" [(ngModel)]="items.formsButtons[indx].btnname">
+              </td>
+              <td class="border px-2 py-1">
+                <input type="text" placeholder="Button Icon" [(ngModel)]="items.formsButtons[indx].btnicon">
+                <mat-icon class="mx-1 text-base">{{items.formsButtons[indx].btnicon}}</mat-icon>
+              </td>
+              <td class="border px-2 py-1">
+                <input type="text" placeholder="Button Name" [(ngModel)]="items.formsButtons[indx].useto">
+              </td>
+              <td class="border px-2 py-1"><mat-icon style="font-size:20px;">delete</mat-icon></td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      }
+
+
+
+    </mat-dialog-content>
+  </mat-tab>
+  }
+
+<!-- Form validations Page -->
+  @if(items.isMandatory && items.validators && items.validators.length > 0){
+  <mat-tab>
+    <ng-template mat-tab-label>Validations</ng-template>
+    <mat-dialog-content class="mat-typography">
+      <div>
+        @for(validatorlist of items.validators; track $index) {
+        <h6 class="titlelabel py-2"> <span><mat-icon class="mx-1" style="vertical-align:middle;">add_circle</mat-icon> {{validatorlist.validatorName}}</span></h6>
+        @if(validatorlist.validatorName == 'required') {
+          <input type="text" placeholder="Add Validation Message" [(ngModel)]="validatorlist.message">
+        }
+        @if(validatorlist.validatorName == 'email') {
+          <input type="text" placeholder="Add Validation Message" [(ngModel)]="validatorlist.message">
+        }
+        @if(validatorlist.validatorName == 'minlength') {
+          <input type="text" placeholder="Add Validation Message" [(ngModel)]="validatorlist.message">
+          <input type="text" placeholder="Set minlength" [(ngModel)]="validatorlist.minLength">
+        }
+        @if(validatorlist.validatorName == 'maxlength') {
+          <input type="text" placeholder="Add Validation Message" [(ngModel)]="validatorlist.message">
+          <input type="text" placeholder="Set maxlenght" [(ngModel)]="validatorlist.maxLength">
+        }
+        @if(validatorlist.validatorName == 'pattern') {
+          <input type="text" placeholder="Add Validation Message" [(ngModel)]="validatorlist.message">
+          <input type="text" placeholder="Add Validation Pattern" [(ngModel)]="validatorlist.pattern">
+        }
+        }
+      </div>
+    </mat-dialog-content>
+  </mat-tab>
+  }
+
+  }
+</mat-tab-group>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="closeModel()">Resets</button>
+  @for (items of data; track items; let i = $index) {
+  @if(items && !items?.gridButtons){
+  <button mat-flat-button color="primary" cdkFocusInitial (click)="saveForm()">Save</button>
+  }@else {
+  <button mat-flat-button color="primary" cdkFocusInitial (click)="updateFormlist()">Update Form</button>
+  }
+  }
+</mat-dialog-actions>

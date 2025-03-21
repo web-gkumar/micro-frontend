@@ -1,0 +1,41 @@
+@use '@angular/material' as mat;
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+a {text-decoration:none;}
+ul,li,ol {margin:0;padding:0;list-style:none;}
+h1,h2,h3,h4,h5,h6,p {margin:0;padding:0;}
+:focus {outline:none;}
+
+
+.mat-drawer-container {height:calc(100% - 50px);}
+.mat-drawer {width:100px !important;border-radius:0 !important;border-right:1px solid #e7e7e7 !important;}
+.mat-mdc-dialog-surface {border-radius:5px !important;}
+.mat-toolbar-single-row {height:50px !important;}
+.mat-mdc-icon-button {padding:0 !important}
+
+
+
+.titlehead {background:#eee;padding:5px 10px;font-size:13px;
+  span {cursor:pointer;}
+  mat-icon {display:inline-block;vertical-align:middle;margin-right:5px;width:auto;height:auto;}
+  input {border-radius:25px;background:transparent;border:1px solid #ccc;padding:5px 10px;font-size:15px;}
+}
+.table {
+  mat-icon {display:inline-block;vertical-align:middle;margin-right:5px;width:auto;height:auto;font-size:14px;cursor:pointer;}
+}
+
+
+
+
+

@@ -1,0 +1,19 @@
+.formGroup {
+    input, textarea, select {width:100%;border-radius:8px;border:1px solid #ccc;padding:5px 10px;font-size:14px;vertical-align:middle;}
+    label {font-size:12px;display:block;}
+    .formhead {background:#ddd;}
+    .errmsg {position:absolute;bottom:2px;left:14px;font-size:11px;}
+
+
+    .formitem {position:relative;
+        .formoptions {position:absolute;right:0px;top:-5px;display:none;z-index:99;
+            mat-icon {width:auto;height:auto;color:#999;font-size:12px;margin:3px;border:1px solid #999;padding:3px;border-radius:5px;cursor:pointer;}
+        }
+        &:hover {
+            .formoptions {display:block;}
+        }
+    }
+  }
+// .formbtn {display:none;}
+
+
