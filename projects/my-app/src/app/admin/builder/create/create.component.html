@@ -1,134 +1,17 @@
 <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms">
-  <mat-tab label="Create Forms">
-    <section class="titlehead d-flex align-items-center justify-content-between">
-      <span (click)="addForm()"><mat-icon>add_box</mat-icon><strong>Add Form</strong></span>
-      <div>
-        <input type="text" placeholder="Search Items">
-        <button mat-icon-button class="mx-3"><mat-icon class="m-0">downloading</mat-icon></button>
-      </div>
-    </section>
-
-    @if (allForms.length > 0) {
-    <table class="table">
-      <thead class="bg-dark">
-        <tr>
-          <th><small>Action</small></th>
-          <th><small>Form Name</small></th>
-          <th><small>Form Icon</small></th>
-          <th><small>Form Fields</small></th>
-          <th><small>Popup</small></th>
-          <th><small>Pojo</small></th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (formItems of allForms; track formItems; let indx = $index) {
-        <tr class="border p-2">
-          <td>
-            <mat-icon [routerLink]="['../update', formItems._id]">edit</mat-icon>
-            <mat-icon (click)="formDelete(formItems)">delete</mat-icon>
-          </td>
-
-          <td><small>{{formItems.formName}}</small></td>
-          <td><small>{{formItems.formicon}}</small></td>
-          <td>
-            @for (item of formItems.formControls; track $index) {
-            <small class="mr-2">{{item.name}},</small>
-            }
-          </td>
-          <td><small>{{formItems.isPopup ? 'Yes': 'No'}}</small></td>
-          <td><small>{{formItems.pojo}}</small></td>
-        </tr>
-        }
-      </tbody>
-    </table>
-    }
+  <mat-tab>
+    <ng-template mat-tab-label>Forms</ng-template>
+    <app-create-forms />
   </mat-tab>
 
-  <mat-tab label="Create Menus">
-    <section class="titlehead d-flex align-items-center justify-content-between">
-      <span (click)="createModule()"><mat-icon>add_box</mat-icon><strong>Add Menu</strong></span>
-      <div>
-        <input type="text" placeholder="Search Items">
-        <button mat-icon-button class="mx-3"><mat-icon class="m-0">downloading</mat-icon></button>
-      </div>
-    </section>
-
-    <section class="p-3">
-      <cdk-accordion>
-        @for (item of moduleList; track item; let index = $index) {
-        <cdk-accordion-item class="accordion-item" [ngClass]="accordionItem.expanded?'open':'close'"
-          #accordionItem="cdkAccordionItem">
-          <div class="accordion-header d-flex align-items-center justify-content-between px-3 py-2"
-            (click)="accordionItem.toggle()">
-            <span><mat-icon>{{item.moduleIcon ? item.moduleIcon : 'window'}}</mat-icon> {{item.moduleName}}</span>
-            <span>{{ accordionItem.expanded ? 'close' : 'open' }}</span>
-          </div>
-
-
-          <div class="accordion-body px-3 py-2" [style.display]="accordionItem.expanded ? '' : 'none'">
-            <mat-button-toggle-group [(ngModel)]="moduleinTabs">
-              <mat-button-toggle value="changeName"><small>Module/Icon/form Name</small></mat-button-toggle>
-              <mat-button-toggle value="menulist"><small>Menu</small></mat-button-toggle>
-              <mat-button-toggle (click)="deleteModule(item)"><small>Delete</small></mat-button-toggle>
-              <mat-button-toggle (click)="saveModule(item)" color="primary"><small>Save</small></mat-button-toggle>
-            </mat-button-toggle-group>
-
-            <div class="my-3">
-              @if(moduleinTabs == 'changeName'){
-              <input [(ngModel)]="item.moduleIcon" placeholder="Add Module Icon">
-              <input [(ngModel)]="item.moduleName" placeholder="Add Module Name">
-              <input placeholder="Add Form" [(ngModel)]="item.moduleForm" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete">
-                @for (formitems of allForms; track formitems) {
-                <mat-option [value]="formitems?.formName"><small>{{formitems?.formName}}</small></mat-option>
-                }
-              </mat-autocomplete>
-              }
-
-              @if(moduleinTabs == 'menulist'){
-              <button mat-stroked-button><mat-icon>add_circle</mat-icon> Add Menu ({{moduleList.length}}) </button>
-
-              <div class="w-100 my-3">
-                <table class="w-1000">
-                  <thead>
-                    <tr>
-                      <td class="border px-2"><small>Menu Icons</small></td>
-                      <td class="border px-2"><small>Menu Name</small></td>
-                      <td class="border px-2"><small>Form Name</small></td>
-                      <td class="border px-2"><small>Actions</small></td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @for (menuData of item.menulist; track menuData; let indx = $index) {
-                    <tr>
-                      <td class="border px-2 py-1 flex items-center">
-                        <input type="text" [(ngModel)]="menuData.menuIcon" placeholder="Add Menu Icon">
-                        <mat-icon class="mx-1">{{menuData.menuIcon}}</mat-icon>
-                      </td>
-                      <td class="border px-2 py-1"><input type="text" [(ngModel)]="menuData.menuName"
-                          placeholder="Add Menu Name"></td>
-                      <td class="border px-2 py-1">
-                        <input placeholder="Add Form" [(ngModel)]="menuData.menuFormName" [matAutocomplete]="auto">
-                        <mat-autocomplete #auto="matAutocomplete">
-                          @for (formitems of allForms; track formitems) {
-                          <mat-option [value]="formitems?.formName"><small>{{formitems?.formName}}</small></mat-option>
-                          }
-                        </mat-autocomplete>
-                      </td>
-                      <td class="border px-2 py-1"><mat-icon>delete</mat-icon></td>
-                    </tr>
-                    }
-                  </tbody>
-                </table>
-              </div>
-              }
-            </div>
-          </div>
-        </cdk-accordion-item>
-        }
-      </cdk-accordion>
-    </section>
+  <mat-tab>
+    <ng-template mat-tab-label>Modules</ng-template>
+    <app-create-module></app-create-module>
   </mat-tab>
 
+  <mat-tab>
+    <ng-template mat-tab-label>User/Permission</ng-template>
+    <app-create-users />
+  </mat-tab>
 
 </mat-tab-group>

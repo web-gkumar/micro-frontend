@@ -23,7 +23,7 @@ export class FormDataService {
         {
           "btnname": "Save",
           "btnicon": "save",
-          "useto": "addNewformbtn",
+          "useto": "addForm",
           "isdisabled": false
         },
         {
