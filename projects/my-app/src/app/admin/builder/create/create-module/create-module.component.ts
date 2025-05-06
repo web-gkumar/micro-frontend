@@ -23,9 +23,8 @@ export class CreateModuleComponent {
 
 
   constructor( private _crudService:CrudService){
-    this._crudService.getAll("forms").subscribe((data:any) => {
-      this.formLIst = data.data;
-    })
+    let forms:any = localStorage.getItem("forms");
+    this.formLIst = JSON.parse(forms);
   }
 
   ngOnInit(): void {
@@ -33,9 +32,8 @@ export class CreateModuleComponent {
   }
 
   getModule(){
-    this._crudService.getAll("modules").subscribe((data:any) => {
-      this.moduleList = data.data;
-    })
+    let forms:any = localStorage.getItem("modules");
+    this.moduleList = JSON.parse(forms);
   }
   
   createModule() {

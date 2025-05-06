@@ -15,19 +15,22 @@ export class CrudService {
   AUTH_API:any = environment.serverhost;
   constructor(private http: HttpClient) { }
 
-  getAll(collectionName:any):Observable<any> {
-    return this.http.get(`${this.AUTH_API}/${collectionName}`);
+  getAll(path:any,):Observable<any> {
+    return this.http.get(`${this.AUTH_API}/${path}`);
   }
-  create(data:any, collectionName:any):Observable<any> {
-    return this.http.post(`${this.AUTH_API}/${collectionName}`, data);
+  getAllCollection(path:any,data:any):Observable<any> {
+    return this.http.post(`${this.AUTH_API}/${path}`, data);
   }
-  update(id:any,data:any,collectionName:any): Observable<Object>{
-    return this.http.put(`${this.AUTH_API}/${collectionName}/${id}`, data);
+  create(data:any, path:any):Observable<any> {
+    return this.http.post(`${this.AUTH_API}/${path}`, data);
   }
-  delete(id:any,collectionName:any):Observable<any>{
-    return this.http.delete<any>(`${this.AUTH_API}/${collectionName}/${id}`);
+  update(id:any,data:any,path:any): Observable<Object>{
+    return this.http.put(`${this.AUTH_API}/${path}/${id}`, data);
   }
-  getById(data: any,collectionName:any): Observable<any> {
-    return this.http.get<any>(`${this.AUTH_API}/${collectionName}/${data}`);
+  delete(id:any,path:any):Observable<any>{
+    return this.http.delete<any>(`${this.AUTH_API}/${path}/${id}`);
+  }
+  getById(data: any,path:any): Observable<any> {
+    return this.http.get<any>(`${this.AUTH_API}/${path}/${data}`);
   }
 }

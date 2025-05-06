@@ -1,6 +1,43 @@
 <section class="titlehead d-flex justify-content-between">
-    <ul class="d-flex">
-        <li><mat-icon>add_box</mat-icon> Add Users</li>
-    </ul>
+    <ul class="d-flex"><li><mat-icon>add_box</mat-icon> Add Users</li></ul>
     <input type="text" placeholder="Search Items">
 </section>
+<form [formGroup]="userForms">
+    <table class="table m-0">
+        <thead class="bg-dark">
+            <tr>
+                <th><small>User Name</small></th>
+                <th><small>Gmail Id</small></th>
+                <th><small>Password</small></th>
+                <th><small>Permission</small></th>
+                <th><small>Modules</small></th>
+                <th><small>Action</small></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" class="form-control" placeholder="Username" formControlName="username"></td>
+                <td><input type="email" class="form-control" placeholder="Email" formControlName="email"></td>
+                <td><input type="password" class="form-control" placeholder="password" formControlName="password"></td>
+                <td>
+                    <select class="form-select" formControlName="role">
+                        <option>Admin</option>
+                        <option>Editor</option>
+                        <option>View</option>
+                    </select>
+                </td>
+                <td>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Assign Menu</mat-label>
+                        <mat-select formControlName="assigmenu" multiple>
+                            @for (item of moduleList; track item) { 
+                                <mat-option [value]="item"><small>{{item.moduleName}}</small></mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+                <td><button mat-flat-button (click)="submitform()"><mat-icon>save</mat-icon> Add</button></td>
+            </tr>
+        </tbody>
+    </table>
+</form>

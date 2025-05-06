@@ -20,6 +20,7 @@ export class SidebarComponent {
   constructor(private _crudService: CrudService) {
     this._crudService.getAll("modules").subscribe((data: any) => {
       this.moduleLIst = data.data;
+      localStorage.setItem("modules", JSON.stringify(data.data));
     });
   }
 

@@ -40,6 +40,7 @@ export class CreateFormsComponent {
    getAllForms() {
      this._crudService.getAll("forms").subscribe((data:any) => {
        this.allForms = data.data.reverse();
+       localStorage.setItem("forms", JSON.stringify(data.data));
      })
    }
  
