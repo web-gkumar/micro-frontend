@@ -1,0 +1,87 @@
+<section class="titlehead d-flex justify-content-between">
+    <ul class="d-flex">
+        <li (click)="createModule()"><mat-icon>add_box</mat-icon> Add Modules</li>
+    </ul>
+    <input type="text" placeholder="Search Items" [(ngModel)]="filterSearch">
+</section>
+
+
+<cdk-accordion>
+    @if(moduleList && moduleList.length > 0){
+    @for (item of moduleList | filter:filterSearch; track item; let index = $index) {
+    <cdk-accordion-item class="accordion-item" [ngClass]="accordionItem.expanded?'open':'close'"
+      #accordionItem="cdkAccordionItem">
+      <div class="accordion-header" (click)="accordionItem.toggle()">
+        <span><mat-icon>{{item.moduleIcon ? item.moduleIcon : 'window'}}</mat-icon> {{item.moduleName}}</span>
+        <span>{{ accordionItem.expanded ? 'close' : 'open' }}</span>
+      </div>
+
+      <section class="accordion-body" [style.display]="accordionItem.expanded ? '' : 'none'">
+        <mat-button-toggle-group [(ngModel)]="moduleinTabs">
+          <mat-button-toggle value="changeModules"><small>Module/Icon/Form Name</small></mat-button-toggle>
+          <mat-button-toggle value="menulist"><small>Menu</small></mat-button-toggle>
+          <mat-button-toggle (click)="removeModule(item)"><small>Delete</small></mat-button-toggle>
+          <mat-button-toggle color="primary" (click)="saveModule(item)"><small>Save</small></mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <div class="my-3">
+          @if(moduleinTabs == 'changeModules'){
+          <input [(ngModel)]="item.moduleIcon" placeholder="Add Module Icon">
+          <input [(ngModel)]="item.moduleName" placeholder="Add Module Name">
+          <input placeholder="Add Form" [(ngModel)]="item.moduleForm" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option value=""></mat-option>
+            @for (formitems of formLIst; track formitems) {
+               <mat-option [value]="formitems?.formName"><small>{{formitems?.formName}}</small></mat-option>
+            }
+          </mat-autocomplete>
+          }
+
+          @if(moduleinTabs == 'menulist'){
+          <h4><button mat-icon-button (click)="createMenu(item)"><mat-icon>add_circle</mat-icon></button>
+            Create Menu {{moduleList.length}}
+          </h4>
+          <div class="">
+            <table class="w-100">
+              <thead>
+                <tr>
+                  <td class="border px-2"><small>Menu Icons</small></td>
+                  <td class="border px-2"><small>Menu Name</small></td>
+                  <td class="border px-2"><small>Form Name</small></td>
+                  <td class="border px-2"><small>Actions</small></td>
+                </tr>
+              </thead>
+              <tbody>
+                @for (menuData of item.menulist; track menuData; let indx = $index) {
+                <tr>
+                  <td class="border px-2 py-1">
+                    <input type="text" [(ngModel)]="menuData.menuIcon" placeholder="Add Menu Icon">
+                    <mat-icon class="mx-1">{{menuData.menuIcon}}</mat-icon>
+                  </td>
+                  <td class="border px-2 py-1">
+                    <input type="text" [(ngModel)]="menuData.menuName" placeholder="Add Menu Name">
+                  </td>
+                  <td class="border px-2 py-1">
+                    <input placeholder="Add Form" [(ngModel)]="menuData.menuFormName" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option value=""></mat-option>
+                      @for (formitems of formLIst; track formitems) {
+                      <mat-option [value]="formitems?.formName">
+                        <small>{{formitems?.formName}}</small>
+                      </mat-option>
+                      }
+                    </mat-autocomplete>
+                  </td>
+                  <td class="border px-2 py-1"><mat-icon>delete</mat-icon></td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          }
+        </div>
+      </section>
+    </cdk-accordion-item>
+    }
+    }
+  </cdk-accordion>

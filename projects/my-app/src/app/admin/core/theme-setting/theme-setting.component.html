@@ -1,0 +1,26 @@
+<mat-card class="settingMenu">
+    <mat-card-header>
+        <div mat-card-avatar><img src="https://material.angular.io/assets/img/examples/shiba1.jpg"></div>
+        <mat-card-subtitle>Gautam kumar</mat-card-subtitle>
+        <mat-card-subtitle><small>abcgmail.com</small></mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content class="my-1">
+        @for (menulist of profileMenu; track $index) {
+            <button mat-button [routerLink]="[menulist.link]" routerLinkActive="router-link-active"> <mat-icon>{{menulist.icon}}</mat-icon> {{menulist.title}}</button>
+        }
+        <button mat-button (click)="toggleThemeMode()">
+            <mat-icon>{{themeMode=='light'?'light_mode':'dark_mode'}}</mat-icon> {{themeMode=='light'?'Light':'Dark'}} Theme
+        </button>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-content class="my-1">
+        
+        @for (colorlist of themeColors; track $index) {
+            <button mat-button (click)="toggleThemeColor(colorlist.name)">
+                <small class="colorbox me-1" [style.backgroundColor]="colorlist.code"></small>
+                {{colorlist.name}}
+            </button>
+        }
+    </mat-card-content>
+</mat-card>

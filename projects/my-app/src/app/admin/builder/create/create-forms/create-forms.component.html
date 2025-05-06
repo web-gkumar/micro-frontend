@@ -1,0 +1,44 @@
+<section class="titlehead d-flex justify-content-between">
+    <ul class="d-flex">
+        <li (click)="addForm()"><mat-icon>add_box</mat-icon> Add Form</li>
+    </ul>
+    <input type="text" placeholder="Search Items" [(ngModel)]="filterSearch">
+</section>
+  
+@if (allForms?.length > 0) {
+  <table class="table">
+    <thead class="bg-dark">
+      <tr>
+        <th><small>Action</small></th>
+        <th><small>Form Name</small></th>
+        <th><small>Form Icon</small></th>
+        <th><small>Form Fields</small></th>
+        <th><small>Popup</small></th>
+        <th><small>Pojo</small></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (formItems of allForms | filter:filterSearch; track formItems; let indx = $index) {
+      <tr class="border p-2">
+        <td>
+          <mat-icon [routerLink]="['../update', formItems._id]">edit</mat-icon>
+          <mat-icon (click)="formDelete(formItems)">delete</mat-icon>
+        </td>
+
+        <td><small>{{formItems.formName}}</small></td>
+        <td><small>{{formItems.formicon}}</small></td>
+        <td>
+          @for (item of formItems.formControls; track $index) {
+          <small class="mr-2">{{item.name}},</small>
+          }
+        </td>
+        <td><small>{{formItems.isPopup ? 'Yes': 'No'}}</small></td>
+        <td><small>{{formItems.pojo}}</small></td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  }
+
+
+  

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-// import {ThemeSettingComponent} from '../theme-setting/theme-setting.component';
-// import {NotificationComponent} from '../notification/notification.component';
+import {ThemeSettingComponent} from '../theme-setting/theme-setting.component';
+import {NotificationComponent} from '../notification/notification.component';
 import {FormControl,FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDividerModule} from '@angular/material/divider';
@@ -10,14 +10,14 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {startWith, map} from 'rxjs/operators';
 import {RouterModule} from '@angular/router';
-import {AsyncPipe} from '@angular/common';
 import {Observable} from 'rxjs';
+
 
 
 
 @Component({
     selector: 'app-header',
-    imports: [MatMenuModule, MatButtonModule, MatIconModule, FormsModule, ReactiveFormsModule, AsyncPipe, MatAutocompleteModule, MatCardModule, MatDividerModule, RouterModule],
+    imports: [NotificationComponent,ThemeSettingComponent, MatMenuModule, MatButtonModule, MatIconModule, FormsModule, ReactiveFormsModule, MatAutocompleteModule, MatCardModule, MatDividerModule, RouterModule],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
 })

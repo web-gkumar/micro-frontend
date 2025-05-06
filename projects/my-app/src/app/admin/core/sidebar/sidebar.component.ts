@@ -18,8 +18,9 @@ export class SidebarComponent {
 
   moduleLIst: any = [];
   constructor(private _crudService: CrudService) {
-    this._crudService.getAllModules().subscribe((data: any) => {
+    this._crudService.getAll("modules").subscribe((data: any) => {
       this.moduleLIst = data.data;
+      localStorage.setItem("modules", JSON.stringify(data.data));
     });
   }
 

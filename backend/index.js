@@ -9,10 +9,6 @@ app.use(cors());
 app.use(express.json());
 app.use(routers);
 
-
-
-
-
 // DB Connections
 require('./server/config/db')
 const connectDb = require('./server/config/db');

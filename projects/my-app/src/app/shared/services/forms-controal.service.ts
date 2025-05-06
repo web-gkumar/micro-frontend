@@ -22,12 +22,12 @@ export class FormsControalService implements OnInit {
 
   }
 
-  takeActionBtn(btnObj: any, formData: any, urlId: any, formValue: any) {
+  takeActionBtn(btnObj: any, formData: any, id: any, formValue: any) {
     switch (btnObj.useto) {
-      case "addNewformbtn":
+      case "addForm":
         formValue['pojo'] = formData['pojo'];
         this.setFormValue(formValue, formData)
-        this._crudService.createFormsData(formValue).subscribe((data: any) => {
+        this._crudService.create(formValue, "createFormData").subscribe((data: any) => {
           if (data) {
             alert("Saved Data");
           }
@@ -38,7 +38,7 @@ export class FormsControalService implements OnInit {
           'pojo': formData['pojo']
         }
         formValue = { ...formValue, ...obj }
-        this._crudService.updateGridData(urlId, formValue).subscribe((data: any) => {
+        this._crudService.update(id, formValue, "gridData").subscribe((data: any) => {
           if (data) {
             alert("Saved Data");
           }

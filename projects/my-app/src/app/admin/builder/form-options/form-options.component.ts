@@ -41,7 +41,7 @@ export class FormOptionsComponent implements OnInit {
     this.dialogRef.close(this.data);
   }
   updateFormlist() {
-    this._crudService.updateForms(this.data[0]._id, this.data[0]).subscribe((data:any) => {
+    this._crudService.update(this.data[0]._id, this.data[0], "forms").subscribe((data:any) => {
       this.dialogRef.close();
     })
   }

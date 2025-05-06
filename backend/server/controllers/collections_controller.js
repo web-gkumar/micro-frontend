@@ -6,7 +6,7 @@ const { collectionSchema } = require('../models/saveform_schema');
 
 const saveDyanimicFormsData = async (req, res) => {
     try {
-      const dynamicModel = mongoose.model(req.body.pojo, collectionSchema);
+      const dynamicModel = mongoose.model(req.body?.pojo, collectionSchema);
       let moduleItem = new dynamicModel(req.body);
       await moduleItem.save();
       res.status(201).json({ message: 'Form Successfully Saved', data: moduleItem });

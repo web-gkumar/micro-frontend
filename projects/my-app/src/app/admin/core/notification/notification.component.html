@@ -1,0 +1,11 @@
+<mat-card class="notificationlist">
+    @for (notify of notifymsg.slice(0,5); track $index) {
+        <mat-card-header>
+            <div mat-card-avatar><img [src]="notify.icon"></div>
+            <mat-card-subtitle><small>{{notify.time}}</small></mat-card-subtitle>
+            <mat-card-title>{{notify.discription.slice(0,55)}}...</mat-card-title>
+        </mat-card-header>
+        <mat-divider class="my-0 py-0"></mat-divider>
+    }
+    <button mat-button class="w-100 d-block my-2"><mat-icon>light_mode</mat-icon> More Notification</button> 
+</mat-card>

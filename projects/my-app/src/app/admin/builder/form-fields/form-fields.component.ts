@@ -47,9 +47,9 @@ export class FormFieldsComponent implements OnInit {
   ngOnInit(): void {
     this._route.params.subscribe((res: any) => {
       if(res['addNew']){
-        this._crudService.getAllForms().pipe(
+        this._crudService.getAll("forms").pipe(
           map((response: any) => response['data'].filter((item: any) => item['formName'] === res['formName']))
-        ).subscribe(data => {
+        ).subscribe((data:any) => {
           this.formData = data[0];
           this.formData['isFormCreations'] = false;
           this.formCreation(res);
@@ -58,7 +58,7 @@ export class FormFieldsComponent implements OnInit {
 
       if (res['id']) {
         this.formData['isFormCreations'] = true;
-        this._crudService.getFormById(res['id']).subscribe((data: any) => {
+        this._crudService.getById(res['id'], "forms").subscribe((data: any) => {
           if (data) {
             this.formData = data?.data;
             this.formData['isFormCreations'] = true;
@@ -124,7 +124,7 @@ export class FormFieldsComponent implements OnInit {
       data: [data],
     }).afterClosed().subscribe((response: any) => {
       console.log(`Dialog result: ${response}`);
-      this.formData.formControls[indx] = response['0']
+      this.formData.formControls[indx] = response[0]
     });
   }
 
@@ -148,23 +148,23 @@ export class FormFieldsComponent implements OnInit {
   }
 
   updateForm() {
-    this._crudService.updateForms(this.formData._id, this.formData).subscribe((data: any) => {
+    this._crudService.update(this.formData._id, this.formData, "forms").subscribe((data: any) => {
       if (data) {
         alert("Form Updated");
       }
     })
   }
 
-  // actionBtn(buttonObj: any) {
-  //   if (this.dynamicForm.invalid) {
-  //     this.dynamicForm.markAllAsTouched();
-  //     return;
-  //   } else {
-  //     this._formsControalService.takeActionBtn(buttonObj, this.formData, this.urlId, this.dynamicForm.value);
-  //     this.dynamicForm.reset();
-  //   }
+  actionBtn(buttonObj: any) {
+    if (this.dynamicForm.invalid) {
+      this.dynamicForm.markAllAsTouched();
+      return;
+    } else {
+      this._formsControalService.takeActionBtn(buttonObj, this.formData, "", this.dynamicForm.value);
+      this.dynamicForm.reset();
+    }
 
-  // }
+  }
 
   showIfFields(formData: any, currentValue: any) {
     this._formsControalService.showIf(formData, currentValue);
