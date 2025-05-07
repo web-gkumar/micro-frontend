@@ -38,9 +38,10 @@
           }
 
           @if(moduleinTabs == 'menulist'){
-          <h4><button mat-icon-button (click)="createMenu(item)"><mat-icon>add_circle</mat-icon></button>
+          <h6 class="d-flex align-items-center">
+            <button mat-icon-button (click)="createMenu(item)"><mat-icon>add_circle</mat-icon></button>
             Create Menu {{moduleList.length}}
-          </h4>
+          </h6>
           <div class="">
             <table class="w-100">
               <thead>

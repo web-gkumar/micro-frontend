@@ -16,23 +16,25 @@ routers.post('/signup', userSignUpValidation, registerUser);
 routers.post('/signin', userSignInValidation, loginUser);
 routers.get('/users', verifyToken, getUsers);
 //Modules Api
-routers.get('/modules', verifyToken, getModules);
+routers.post('/modules', verifyToken, getAll);
 routers.get('/modules/:moduleName', verifyToken, getCurrentModule);
 routers.post('/createModule', verifyToken, createModule);
 routers.put('/modules/:id', verifyToken, updatModule);
 routers.delete('/modules/:id', verifyToken, deleteModule);
-//Forms Api
+//AllForms list Api
 routers.post('/createForm', verifyToken, createForm);
-routers.get('/forms', verifyToken, getForms);
+routers.post('/forms', verifyToken, getAll);
 routers.get('/forms/:id', verifyToken, getFormbyId);
 //routers.get('/forms/:formName', verifyToken, getSingleForm);
 routers.put('/forms/:id', verifyToken, updatForm);
 routers.delete('/forms/:id', verifyToken, deleteForm);
-//DynamicSaveForms Api
-routers.post('/createFormData', verifyToken, saveDyanimicFormsData);
-routers.post('/gridData', verifyToken, getByCollections);
-routers.put('/gridData/:id', verifyToken, updateCollections);
-routers.delete('/gridData/:id', verifyToken, deleteGrid);
+
+//Dynamic Form and Grid Api
+routers.post('/savedFormData', verifyToken, create);
+routers.post('/griddata', verifyToken, getAll);
+// routers.post('/gridData', verifyToken, getByCollections);
+// routers.put('/gridData/:id', verifyToken, updateCollections);
+// routers.delete('/gridData/:id', verifyToken, deleteGrid);
 
 //Users API
 routers.post('/createUser', verifyToken, create);

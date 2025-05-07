@@ -191,23 +191,18 @@
 
 </section>
 
-<mat-dialog-actions align="end">
+<mat-dialog-actions align="end" [ngClass]="addbuttonClass">
   @if(formData?.isFormCreations){
   <div class="flex justify-end m-3">
     <button mat-flat-button (click)="updateForm()"><mat-icon>save</mat-icon>Form Update</button>
   </div>
   }
 
-
-
-  @else {
+@else {
   @if(formData?.formsButtons){
   <div class="flex justify-end my-3">
-    @if(formData?.isPopup){
-        <button mat-button mat-dialog-close class="mx-2">Cancel</button>
-    }@else {
-      <button mat-button class="mx-2" (click)="back()">Cancel</button>
-    }
+    @if(formData?.isPopup){ <button mat-button mat-dialog-close class="mx-2">Cancel</button>}
+    @else { <button mat-button class="mx-2" (click)="back()">Cancel</button>}
     @for (btnlist of formData?.formsButtons; track $index) {
     <button class="formbtn mx-1" (click)="actionBtn(btnlist)"  mat-flat-button [ngClass]="btnlist.useto">
       <mat-icon>{{btnlist?.btnicon}}</mat-icon> {{btnlist?.btnname}}
@@ -215,5 +210,5 @@
     }
   </div>
   }
-  }
+}
 </mat-dialog-actions>

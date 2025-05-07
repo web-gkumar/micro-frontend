@@ -24,15 +24,16 @@ export class FormsControalService implements OnInit {
 
   takeActionBtn(btnObj: any, formData: any, id: any, formValue: any) {
     switch (btnObj.useto) {
-      case "addForm":
-        formValue['pojo'] = formData['pojo'];
+      case "add-form-usecase":
+        formValue['collectionName'] = formData['formName'];
         this.setFormValue(formValue, formData)
-        this._crudService.create(formValue, "createFormData").subscribe((data: any) => {
+        this._crudService.create(formValue, "savedFormData").subscribe((data: any) => {
           if (data) {
             alert("Saved Data");
           }
         })
         break;
+
       case "gridbtn":
         let obj = {
           'pojo': formData['pojo']

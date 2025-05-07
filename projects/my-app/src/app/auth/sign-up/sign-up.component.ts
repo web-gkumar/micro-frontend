@@ -44,7 +44,8 @@ export class SignUpComponent implements OnInit{
       let formValue = this.registationForm.value;
       this._authService.register(formValue).subscribe(data => {
         if(data.message) {
-          this._authService.notifications(`Sign Up ${data.message}`)
+          this._authService.notifications(`Sign Up ${data.message}`);
+          this._route.navigateByUrl("auth/signin")
         }
       })
       this.registationForm.reset("");

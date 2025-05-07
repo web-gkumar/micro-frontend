@@ -1,6 +1,6 @@
-.accordion-item {display:block;border:solid 1px #ccc;border-top:none;
-    &:first-child {border-top:solid 1px #ccc;border-radius:4px 4px 0 0;}
-    &:last-child {border-radius:0 0 4px 4px;}
+.accordion-item {display:block;border:solid 1px #ccc;border-top:none;background:#efefef;
+    // &:first-child {border-top:solid 1px #ccc;border-radius:4px 4px 0 0;}
+    // &:last-child {border-radius:0 0 4px 4px;}
   }
 
   .accordion-header {display:flex;align-content:center;justify-content:space-between;cursor:pointer;padding:16px;
@@ -10,7 +10,7 @@
   }
 
 
-  .accordion-item.open {
+  .accordion-item.open {background:#fff;
     .accordion-header {background-color:var(--mat-standard-button-toggle-text-color);color:var(--mat-sidenav-content-background-color);}
   }
   

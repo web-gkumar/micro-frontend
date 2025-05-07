@@ -1,0 +1,106 @@
+Table
+
+<section class="grid">
+
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      @for (item of formData[0] | keyvalue; track $index) {
+        <th>{{ item.key }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of formData | keyvalue; track $index) {
+      <tr>
+        <th scope="row">{{$index + 1}}</th>
+        <td>{{ item | json  }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+
+</section>
+
+
+
+
+
+<!-- <section class="gridTables">
+    @if(gridData && gridData.length > 0){
+  
+    <div class="gridview rounded-md p-3 pt-0">
+      <caption class="caption-top flex justify-end">
+        <div class="captionOption flex items-center">
+          @if(formData?.isImport){
+            <button class="filebtn" mat-flat-button><input type="file" (change)="onFileChange($event)" /><mat-icon (click)="actionBtn(gridData,'SaveExportData')">drive_folder_upload</mat-icon></button>
+          }
+          <input type="text" [(ngModel)]="filter" class="mx-4 border border-slate-600 text-sm text-slate-900 px-3 py-1 rounded-md bg-transparent placeholder:text-slate-500" placeholder="Search Items">
+          <button mat-icon-button class="mx-3" (click)="downloadFile()"><mat-icon>downloading</mat-icon></button>
+          <mat-icon class="cursor-pointer" [matMenuTriggerFor]="beforeMenu">more_vert</mat-icon>
+        </div>
+      </caption>
+  
+      <div class="tableview">
+        <table class="w-full border-collapse" id="tableData">
+          <thead>
+            <tr class="border border-slate-300 bg-slate-300 px-2 sticky top-0">
+                <th class="px-2 w-14"><small>Sr No</small></th>
+              @for (thead of gridFields; track thead){
+                <th class="text-start px-2"><small>{{thead['label']}}</small></th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (gridValue of gridData; track gridValue; let indx = $index) {
+            <tr [cdkContextMenuTriggerFor]="inner" (contextmenu)="onContextMenuAction1(gridValue)">
+              <td class="text-center px-2 w-14">{{indx + 1}}</td>
+              @for (gridclmn of gridFields; track gridclmn;) {
+                <td class="border border-slate-300 px-2"><small>{{gridValue[gridclmn['name']]}}</small></td>
+              }
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+    }@else {
+    <div class="text-center py-4 fw-bold">No Data</div>
+    }
+  </section>
+  
+  
+  
+  <ng-template #inner>
+    <div class="w-36 p-2 rounded-lg bg-white shadow-xl shadow-black/5 ring-1 ring-slate-700/10" cdkMenu>
+      @if(formData.gridButtons){
+        @for (btns of formData.gridButtons; track btns) {
+        <button class="w-full p-1 my-1 text-sm flex items-center rounded-lg hover:bg-slate-900 hover:text-white"
+        [ngClass]="btns?.isdisabled? 'opacity-50': ''" [disabled]="btns?.isdisabled" (click)="actionBtn(currentGridData,btns.btnname)" cdkMenuItem>
+          <mat-icon class="text-sm">{{btns.btnicon}}</mat-icon>
+          <span>{{btns.btnname}}</span>
+        </button>
+        }
+        }
+    </div>
+  </ng-template>
+  
+  
+  
+  <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <div (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
+      <mat-card>
+        <mat-card-content class="my-1">
+          @for (item of formData['formControls']; track $index) {
+          <mat-checkbox (change)="saveGridFields()"
+            [(ngModel)]="item.hideGridFields"><small>{{item.label}}</small></mat-checkbox>
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-menu>
+   -->
+  

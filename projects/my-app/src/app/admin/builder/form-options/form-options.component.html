@@ -118,9 +118,9 @@
         <table class="w-100">
           <thead>
             <tr>
-              <td class="border px-2"><small>Form Button Name</small></td>
-              <td class="border px-2"><small>Form Button Icons</small></td>
-              <td class="border px-2"><small>Use To</small></td>
+              <td class="border px-2"><small>Button Label</small></td>
+              <td class="border px-2"><small>Button Icon</small></td>
+              <td class="border px-2"><small>Button UseCase</small></td>
               <td class="border px-2"><small>Actions</small></td>
             </tr>
           </thead>
@@ -135,7 +135,11 @@
                 <mat-icon class="mx-1 text-base">{{items.formsButtons[indx].btnicon}}</mat-icon>
               </td>
               <td class="border px-2 py-1">
-                <input type="text" placeholder="Button Name" [(ngModel)]="items.formsButtons[indx].useto">
+                <select [(ngModel)]="items.formsButtons[indx].useto">
+                  <option>----</option>
+                  <option>add-form-usecase</option>
+                  <option>update-grid-usecase</option>
+                </select>
               </td>
               <td class="border px-2 py-1"><mat-icon style="font-size:20px;">delete</mat-icon></td>
             </tr>

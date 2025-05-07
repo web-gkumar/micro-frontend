@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { MatButtonModule } from '@angular/material/button';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { FilterPipe } from "../../../../shared/pipes/filter.pipe";
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -11,7 +12,7 @@ import { CrudService } from '../../../../shared/services/crud.service';
 
 @Component({
   selector: 'app-create-module',
-  imports: [MatIconModule, FormsModule, CommonModule, MatButtonToggleModule, MatAutocompleteModule, CdkAccordionModule, FilterPipe],
+  imports: [MatIconModule, FormsModule, CommonModule, MatButtonModule, MatButtonToggleModule, MatAutocompleteModule, CdkAccordionModule, FilterPipe],
   templateUrl: './create-module.component.html',
   styleUrl: './create-module.component.scss'
 })

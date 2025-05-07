@@ -29,6 +29,7 @@ export class FormFieldsComponent implements OnInit {
   components: any;
   componentFields: any = [];
   formData: any = [];
+  addbuttonClass = "";
 
   constructor(
     private _router: Router,
@@ -47,7 +48,8 @@ export class FormFieldsComponent implements OnInit {
   ngOnInit(): void {
     this._route.params.subscribe((res: any) => {
       if(res['addNew']){
-        this._crudService.getAll("forms").pipe(
+        this.addbuttonClass = "addNewForm"
+        this._crudService.getAllCollection("forms",  {'collectionName': 'app_forms'}).pipe(
           map((response: any) => response['data'].filter((item: any) => item['formName'] === res['formName']))
         ).subscribe((data:any) => {
           this.formData = data[0];
@@ -57,6 +59,7 @@ export class FormFieldsComponent implements OnInit {
       }
 
       if (res['id']) {
+        this.addbuttonClass = "updateGrid"
         this.formData['isFormCreations'] = true;
         this._crudService.getById(res['id'], "forms").subscribe((data: any) => {
           if (data) {
@@ -127,15 +130,6 @@ export class FormFieldsComponent implements OnInit {
       this.formData.formControls[indx] = response[0]
     });
   }
-
-  // saveForm() {
-  //   let formValue = this.dynamicForm.value;
-  //   this._crudService.createForms(formValue).subscribe(data => {
-  //     if (data) {
-  //       console.log(data);
-  //     }
-  //   })
-  // }
 
   removeFields(indx: any) {
     this.formData["formControls"].splice(indx, 1);
