@@ -29,7 +29,7 @@ export class SignInComponent implements OnInit {
     this._authService.login(formValue).subscribe((data:any) => {
       if(data){
         localStorage.setItem('token', data?.jwtoken)
-        this._snackBar.open(`Login Successfull`, '', {duration: 3000});
+        this._authService.notifications(`Login Successfull`)
         this._route.navigate(['/admin']);
       }
     })

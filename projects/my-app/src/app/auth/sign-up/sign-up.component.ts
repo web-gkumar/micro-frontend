@@ -44,15 +44,10 @@ export class SignUpComponent implements OnInit{
       let formValue = this.registationForm.value;
       this._authService.register(formValue).subscribe(data => {
         if(data.message) {
-          this._snackBar.open(`Sign Up`, data.message, {
-            // horizontalPosition: this.horizontalPosition,
-            // verticalPosition: this.verticalPosition,
-            duration: 3000,
-          });
+          this._authService.notifications(`Sign Up ${data.message}`)
         }
       })
       this.registationForm.reset("");
-
   }
 
 }

@@ -7,6 +7,10 @@ const { createModule, getModules, getCurrentModule, updatModule, deleteModule } 
 const { createForm, getForms, getSingleForm, getFormbyId, updatForm, deleteForm} = require('../controllers/forms_controller');
 const { saveDyanimicFormsData, getByCollections, updateCollections, deleteGrid} = require('../controllers/collections_controller');
 const { fileController } = require('../controllers/file_controller');
+const { create, getAll } = require('../controllers/crud_controller');
+
+
+
 //Auth Api
 routers.post('/signup', userSignUpValidation, registerUser);
 routers.post('/signin', userSignInValidation, loginUser);
@@ -29,6 +33,11 @@ routers.post('/createFormData', verifyToken, saveDyanimicFormsData);
 routers.post('/gridData', verifyToken, getByCollections);
 routers.put('/gridData/:id', verifyToken, updateCollections);
 routers.delete('/gridData/:id', verifyToken, deleteGrid);
+
+//Users API
+routers.post('/createUser', verifyToken, create);
+routers.post('/getUser', verifyToken, getAll);
+
 
 
 // const multer = require('multer');
