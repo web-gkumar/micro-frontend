@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = 'http://localhost:2100';
+  baseUrl = environment.serverhost;
   private isAuthenticated = false;
 
   constructor(

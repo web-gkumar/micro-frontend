@@ -1,14 +1,15 @@
 <section class="text-center py-5">
     <h1>Login</h1>
-    <p>Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
-    <button class="btn btn-danger"><img class="mx-2" src="assets/img/icon/google-logo.svg" width="20px" height="20px"> Log in with Google</button>
+    <p class="text-muted my-4">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
+    
 
-    <form class="mt-5 px-5" [formGroup]="loginForm">
-        <div class="">
-            <input type="text" class="form-control" placeholder="Email Id" formControlName="email">
-            <input type="password" class="form-control my-4" placeholder="Password" formControlName="password">
+    <form class="px-5" [formGroup]="loginForm">
+        <button class="btn btn-dark rounded-pill w-100"><img class="mx-2" src="assets/img/icon/google-logo.svg" width="20px" height="20px"> Log in with Google</button>
+        <div class="mt-5">
+            <input type="text" class="form-control rounded-pill px-4 py-2" placeholder="Email Id" formControlName="email">
+            <input type="password" class="form-control my-4 rounded-pill px-4 py-2" placeholder="Password" formControlName="password">
             <p class="text-end"><a href="javaScript:void(0)">Forgot Password ?</a></p>
-            <button class="w-100 btn btn-danger my-2" (click)="onSubmit()" [disabled]="loginForm.invalid">Login</button>
+            <button class="w-100 btn btn-danger my-2 rounded-pill" (click)="onSubmit()" [disabled]="loginForm.invalid">Login</button>
             <p class="my-2">Don't have an account? <a [routerLink]="['../signup']">Sign Up</a></p>
         </div>
     </form>
