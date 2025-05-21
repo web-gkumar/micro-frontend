@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../../../shared/services/crud.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
     templateUrl: './sidebar.component.html',
     styleUrl: './sidebar.component.scss'
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
 
   moduleLIst: any = [];
   constructor(private _crudService: CrudService) {
@@ -23,6 +23,15 @@ export class SidebarComponent {
       localStorage.setItem("modules", JSON.stringify(data.data));
     });
   }
+
+  ngOnInit(): void {
+    this.getAllForms() 
+  }
+   getAllForms() {
+     this._crudService.getAllCollection("forms", {"collectionName": "app_forms"}).subscribe((data:any) => {
+       localStorage.setItem("forms", JSON.stringify(data.data));
+     })
+   }
 
 
 }

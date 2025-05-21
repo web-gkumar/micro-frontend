@@ -34,11 +34,8 @@ export class FormsControalService implements OnInit {
         })
         break;
 
-      case "gridbtn":
-        let obj = {
-          'pojo': formData['pojo']
-        }
-        formValue = { ...formValue, ...obj }
+      case "update-grid-usecase":
+        formValue['collectionName'] = formData['formName'];
         this._crudService.update(id, formValue, "gridData").subscribe((data: any) => {
           if (data) {
             alert("Saved Data");
