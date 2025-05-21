@@ -13,3 +13,16 @@
     }
     
 }
+
+
+table {font-size:14px;
+    thead {
+        th {background:#000;color:#fff;font-weight:500;}
+    }
+    tbody {
+        td {margin:0;padding:0 5px;}
+        .mat-mdc-button-base {padding: 5px; width: 30px; height: 30px;
+            .mat-icon {font-size: 14px; line-height: 25px;}
+        }
+    }
+}

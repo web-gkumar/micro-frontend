@@ -15,9 +15,9 @@ export class CrudService {
   AUTH_API:any = environment.serverhost;
   constructor(private http: HttpClient) { }
 
-  getAll(path:any,data:any):Observable<any> {
-    return this.http.get(`${this.AUTH_API}/${path}`, data);
-  }
+  // getAll(apiName:any,data:any):Observable<any> {
+  //   return this.http.get(`${this.AUTH_API}/${apiName}`, data);
+  // }
   getAllCollection(path:any,data:any):Observable<any> {
     return this.http.post(`${this.AUTH_API}/${path}`, data);
   }

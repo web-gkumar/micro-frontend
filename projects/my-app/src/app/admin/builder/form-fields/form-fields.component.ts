@@ -30,6 +30,7 @@ export class FormFieldsComponent implements OnInit {
   componentFields: any = [];
   formData: any = [];
   addbuttonClass = "";
+  currentGridData:any;
 
   constructor(
     private _router: Router,
@@ -60,13 +61,23 @@ export class FormFieldsComponent implements OnInit {
 
       if (res['id']) {
         this.addbuttonClass = "updateGrid"
-        this.formData['isFormCreations'] = true;
-        this._crudService.getById(res['id'], "forms").subscribe((data: any) => {
-          if (data) {
-            this.formData = data?.data;
-            this.formData['isFormCreations'] = true;
-            this.formCreation(res);
-          }
+        let currentForm = localStorage.getItem("forms");
+        let parsedData = currentForm ? JSON.parse(currentForm) : null;
+        of(parsedData).pipe(
+          map((response:any) => response.filter((data: any) => data.formName === res['formName']))
+        ).subscribe((res) => {
+              this.formData = res[0];
+              this.formData['isFormCreations'] = false;
+              this.formCreation(res);
+        })
+
+        let gridData = localStorage.getItem("gridData");
+        let parsedgridData = gridData ? JSON.parse(gridData) : null;
+        of(parsedgridData).pipe(
+          map((response:any) => response.filter((data: any) => data._id === res['id']))
+        ).subscribe((res) => {
+              this.currentGridData = res[0];
+              this.dynamicForm.patchValue(res[0]);
         })
 
       }
@@ -126,7 +137,6 @@ export class FormFieldsComponent implements OnInit {
       height: '500px',
       data: [data],
     }).afterClosed().subscribe((response: any) => {
-      console.log(`Dialog result: ${response}`);
       this.formData.formControls[indx] = response[0]
     });
   }
@@ -154,7 +164,7 @@ export class FormFieldsComponent implements OnInit {
       this.dynamicForm.markAllAsTouched();
       return;
     } else {
-      this._formsControalService.takeActionBtn(buttonObj, this.formData, "", this.dynamicForm.value);
+      this._formsControalService.takeActionBtn(buttonObj, this.formData, this.currentGridData? this.currentGridData._id: '', this.dynamicForm.value);
       this.dynamicForm.reset();
     }
 

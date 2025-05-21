@@ -32,9 +32,9 @@ routers.delete('/forms/:id', verifyToken, deleteForm);
 //Dynamic Form and Grid Api
 routers.post('/savedFormData', verifyToken, create);
 routers.post('/griddata', verifyToken, getAll);
-// routers.post('/gridData', verifyToken, getByCollections);
-// routers.put('/gridData/:id', verifyToken, updateCollections);
+routers.put('/gridData/:id', verifyToken, updateCollections);
 // routers.delete('/gridData/:id', verifyToken, deleteGrid);
+// routers.post('/gridData', verifyToken, getByCollections);
 
 //Users API
 routers.post('/createUser', verifyToken, create);
