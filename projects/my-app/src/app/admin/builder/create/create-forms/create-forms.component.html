@@ -21,7 +21,7 @@
       @for (formItems of allForms | filter:filterSearch; track formItems; let indx = $index) {
       <tr class="border p-2">
         <td>
-          <mat-icon [routerLink]="['../update', formItems._id]">edit</mat-icon>
+          <mat-icon [routerLink]="['../form/update', formItems._id]">edit</mat-icon>
           <mat-icon (click)="formDelete(formItems)">delete</mat-icon>
         </td>
 

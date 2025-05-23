@@ -1,20 +1,38 @@
 <section class="grid">
-<table class="table">
+
+
+<caption class="caption-top d-flex justify-content-end">
+      <div class="captionOption d-flex align-items-center">
+        @if(formData?.isImport){
+          <button class="filebtn" mat-flat-button><input type="file" /><mat-icon (click)="actionBtn(gridData,'SaveExportData')">drive_folder_upload</mat-icon></button>
+        }
+        <input type="text" [(ngModel)]="filter" class="mx-4 border px-3 rounded bg-transparent" placeholder="Search Items">
+        <button mat-icon-button (click)="downloadFile()"><mat-icon>downloading</mat-icon></button>
+        <button mat-icon-button class="mx-3" [matMenuTriggerFor]="beforeMenu"><mat-icon>more_vert</mat-icon></button>
+      </div>
+</caption>
+
+
+<table class="table" id="tableData">
   <thead>
     <tr>
       <th style="width:80px;"><small>Sr No</small></th>
       @for (thead of gridFields; track thead){
+        @if(!thead.hideGridFields){
           <th><small>{{thead['label']}}</small></th>
+        }  
       }
        <th><small>Action</small></th>
     </tr>
   </thead>
   <tbody>
-        @for (gridValue of gridData; track gridValue; let indx = $index) {
+        @for (gridValue of gridData | filter:filter; track gridValue; let indx = $index) {
           <tr>
             <td>{{indx + 1}}</td>
             @for (gridclmn of gridFields; track gridclmn;) {
-              <td class="border"><small>{{gridValue[gridclmn['name']]}}</small></td>
+              @if(!gridclmn.hideGridFields){
+                <td class="border"><small>{{gridValue[gridclmn['name']]}}</small></td>
+              }
             }
            <td>
             @for (btnlist of formData['gridButtons']; track $index) {
@@ -26,3 +44,17 @@
   </tbody>
 </table>
 </section>
+
+
+
+
+
+
+<mat-menu #beforeMenu="matMenu" xPosition="before">
+  <div (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()" style="min-height:200px;">
+    @for (item of formData['formControls']; track $index) {
+        <mat-checkbox [(ngModel)]="item.hideGridFields"><small>{{item.label}}</small></mat-checkbox>
+      }
+      <div class="text-center" (click)="saveGridFields(formData)"><button mat-button>Save Grid Fields</button></div> 
+  </div>
+</mat-menu>
