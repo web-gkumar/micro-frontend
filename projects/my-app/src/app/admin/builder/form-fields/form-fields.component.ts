@@ -48,7 +48,7 @@ export class FormFieldsComponent implements OnInit {
 
   ngOnInit(): void {
     this._route.params.subscribe((res: any) => {
-      if(res['addNew']){
+      if(res['moduleName'] && res['addNew']){
         this.addbuttonClass = "addNewForm"
         this._crudService.getAllCollection("forms",  {'collectionName': 'app_forms'}).pipe(
           map((response: any) => response['data'].filter((item: any) => item['formName'] === res['formName']))
@@ -59,7 +59,7 @@ export class FormFieldsComponent implements OnInit {
         })
       }
 
-      if (res['id']) {
+      if (res['moduleName'] && res['id']) {
         this.addbuttonClass = "updateGrid"
         let currentForm = localStorage.getItem("forms");
         let parsedData = currentForm ? JSON.parse(currentForm) : null;
@@ -81,6 +81,20 @@ export class FormFieldsComponent implements OnInit {
         })
 
       }
+
+
+    if (res['update'] && res['id']) {
+       let currentForm = localStorage.getItem("forms");
+        let parsedData = currentForm ? JSON.parse(currentForm) : null;
+        of(parsedData).pipe(
+          map((response:any) => response.filter((data: any) => data._id === res['id']))
+        ).subscribe((res) => {
+              this.formData = res[0];
+              this.formData['isFormCreations'] = true;
+              this.formCreation(res);
+        })
+    }
+
     })
 
 
@@ -152,6 +166,7 @@ export class FormFieldsComponent implements OnInit {
   }
 
   updateForm() {
+    this.formData['collectionName'] = "app_forms";
     this._crudService.update(this.formData._id, this.formData, "forms").subscribe((data: any) => {
       if (data) {
         alert("Form Updated");

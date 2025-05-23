@@ -30,6 +30,9 @@ export class CrudService {
   delete(id:any,path:any):Observable<any>{
     return this.http.delete<any>(`${this.AUTH_API}/${path}/${id}`);
   }
+  deleteitem(id: any, path: string, bodyData: any): Observable<any> {
+    return this.http.request<any>('delete', `${this.AUTH_API}/${path}/${id}`, { body: bodyData });
+}
   getById(data: any,path:any): Observable<any> {
     return this.http.get<any>(`${this.AUTH_API}/${path}/${data}`);
   }

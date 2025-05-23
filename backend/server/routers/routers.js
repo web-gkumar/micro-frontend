@@ -7,7 +7,7 @@ const { createModule, getModules, getCurrentModule, updatModule, deleteModule } 
 const { createForm, getForms, getSingleForm, getFormbyId, updatForm, deleteForm} = require('../controllers/forms_controller');
 const { saveDyanimicFormsData, getByCollections, updateCollections, deleteGrid} = require('../controllers/collections_controller');
 const { fileController } = require('../controllers/file_controller');
-const { create, getAll } = require('../controllers/crud_controller');
+const { create, getAll, updateitem, deleteitem } = require('../controllers/crud_controller');
 
 
 
@@ -24,16 +24,18 @@ routers.delete('/modules/:id', verifyToken, deleteModule);
 //AllForms list Api
 routers.post('/createForm', verifyToken, createForm);
 routers.post('/forms', verifyToken, getAll);
+routers.put('/forms/:id', verifyToken, updateitem);
+
+
 routers.get('/forms/:id', verifyToken, getFormbyId);
 //routers.get('/forms/:formName', verifyToken, getSingleForm);
-routers.put('/forms/:id', verifyToken, updatForm);
 routers.delete('/forms/:id', verifyToken, deleteForm);
 
 //Dynamic Form and Grid Api
 routers.post('/savedFormData', verifyToken, create);
 routers.post('/griddata', verifyToken, getAll);
-routers.put('/gridData/:id', verifyToken, updateCollections);
-// routers.delete('/gridData/:id', verifyToken, deleteGrid);
+routers.put('/gridData/:id', verifyToken, updateitem);
+routers.delete('/gridData/:id', verifyToken, deleteitem);
 // routers.post('/gridData', verifyToken, getByCollections);
 
 //Users API

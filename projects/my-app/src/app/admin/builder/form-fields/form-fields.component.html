@@ -31,7 +31,7 @@
     <form [formGroup]="dynamicForm" class="row mx-0">
       @for (control of formData?.formControls; track control; let indx = $index) {
       @if(['text', 'number', 'email', 'password', 'date'].includes(control?.type)){
-      <div class="formitem pb-3" [class]="control?.class ? control?.class : 'col-md-3'" cdkDrag [cdkDragDisabled]="formData?.isFormCreations">
+      <div class="formitem pb-3" [class]="control?.class ? control?.class : 'col-md-3'" cdkDrag [cdkDragDisabled]="!formData?.isFormCreations">
         <label>{{control.label}}@if(control.isMandatory){<sup>*</sup>}</label>
         <input [type]="control?.type" [placeholder]="control?.placeholder" [formControlName]="control?.name" (input)="showIfFields(formData, dynamicForm.get([control?.name])?.value)">
         @if(formData?.isFormCreations) {
